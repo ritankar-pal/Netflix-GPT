@@ -3,9 +3,9 @@ import Header from "./Header";
 import { validateData } from "../utils/validate";
 import { auth } from "../utils/firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { NETFLIX_SIGNIN_BG } from "../utils/constant";
 
 
 
@@ -18,7 +18,6 @@ const Login = () => {
   const name = useRef();
   const email = useRef();
   const password = useRef();
-  const navigate = useNavigate(); //auto-navigate the user to the mentioned URL:
 
   const signInToggleHandler = () => {
     setIsSignInForm((prev) => !prev);
@@ -55,7 +54,6 @@ const Login = () => {
             // Profile updated!
             const { uid, email, displayName } = user;
             dispatch(addUser({uid, email,displayName})); //updating the store again with displayname
-            navigate("/browse");  
           }).catch((error) => {
             // An error occurred
             // ...
@@ -78,7 +76,6 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -100,11 +97,11 @@ const Login = () => {
 
   return (
     <div>
-      <Header />
+      <Header/>
 
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/d253acf4-a1e2-4462-a416-f78802dc2d85/f04bf88c-f71c-4d02-82ed-adb870b8f8db/IN-en-20240429-POP_SIGNUP_TWO_WEEKS-perspective_WEB_658a042e-62cf-473d-8da0-7b875f23e2ef_small.jpg"
+          src= {NETFLIX_SIGNIN_BG}
           alt="netflix"
         />
       </div>

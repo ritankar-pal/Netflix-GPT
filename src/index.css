@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hide scrollbar for webkit browsers (e.g., Chrome, Safari) */
+.overflow-x-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.overflow-x-scroll {
+  scrollbar-width: none;
+}
+
+.scroll-indicator {
+    border-bottom: 1px solid white; /* Add a thin white line as scroll indicator */
+    margin-bottom: -1px; /* Offset to avoid additional space */
+}
